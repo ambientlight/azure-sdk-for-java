@@ -20,6 +20,8 @@ import com.azure.core.http.HttpPipelineCallContext;
 import com.azure.core.http.HttpPipelineNextPolicy;
 import com.azure.core.http.HttpResponse;
 
+import java.util.HashMap;
+
 public class AliasSample {
 	public static void main(String[] args)  {
 		if (args.length != 1) {
@@ -28,15 +30,15 @@ public class AliasSample {
 		}
 
         var creatorDataItemId = args[0];
-        // var clientIdPolicy = new HttpPipelinePolicy(){
-        //     @Override
-        //     public Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next) {
-        //         return Mono.defer(() -> {
-        //             context.getHttpRequest().setHeader("x-ms-client-id", System.getenv("CLIENT_ID"));
-        //             return next.process();
-        //         });
-        //     }
-        // };
+        var clientIdPolicy = new HttpPipelinePolicy(){
+            @Override
+            public Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next) {
+                return Mono.defer(() -> {
+                    context.getHttpRequest().setHeader("x-ms-client-id", System.getenv("CLIENT_ID"));
+                    return next.process();
+                });
+            }
+        };
 
         var subscriptionKeyPolicy = new HttpPipelinePolicy(){
             @Override
@@ -51,8 +53,10 @@ public class AliasSample {
         var defaultCreds = new DefaultAzureCredentialBuilder().build();
         Alias aliasClient = CreatorManager
             .configure()
-            .withPolicy(subscriptionKeyPolicy)
-            .authenticate(defaultCreds, new AzureProfile(AzureEnvironment.AZURE))
+            .withPolicy(clientIdPolicy)
+            .authenticate(defaultCreds, new AzureProfile(new AzureEnvironment(new HashMap<String, String>() {{
+                put("managementEndpointUrl", "https://atlas.microsoft.com");
+            }})))
             .alias();
 
         var aliasCreateResponse = aliasClient.create();
