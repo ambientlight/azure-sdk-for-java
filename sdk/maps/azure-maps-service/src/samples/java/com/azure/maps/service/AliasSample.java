@@ -11,39 +11,39 @@ import com.azure.maps.service.models.AliasesCreateResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class AliasSample {
-	public static void main(String[] args) throws JsonProcessingException {
+	public static void main(String[] args)  {
 		if (args.length != 1) {
 			System.out.println("Usage AliasSample.java <creatorDataItemId>");
 			return;
 		}
-		HttpPipelinePolicy policy = new AzureKeyInQueryPolicy("subscription-key",
-				new AzureKeyCredential(System.getenv("SUBSCRIPTION_KEY")));
-		MapsClient client = new MapsClientBuilder().addPolicy(policy).buildClient();
-		String creatorDataItemId = args[0];
+		//HttpPipelinePolicy policy = new AzureKeyInQueryPolicy("subscription-key",
+		//		new AzureKeyCredential(System.getenv("SUBSCRIPTION_KEY")));
+		// MapsClient client = new MapsClientBuilder().addPolicy(policy).buildClient();
+		// String creatorDataItemId = args[0];
 
-		System.out.println("Create alias:");
-		AliasesCreateResponse aliasCreateResponse = client.getAlias().create();
-		MapsCommon.print(aliasCreateResponse);
-		String aliasId = aliasCreateResponse.getAliasId();
-		try {
-			System.out.println("Assign resource:");
-			AliasListItem assignResponse = client.getAlias().assign(aliasId, creatorDataItemId);
-			MapsCommon.print(assignResponse);
+		// System.out.println("Create alias:");
+		// AliasesCreateResponse aliasCreateResponse = client.getAlias().create();
+		// MapsCommon.print(aliasCreateResponse);
+		// String aliasId = aliasCreateResponse.getAliasId();
+		// try {
+		// 	System.out.println("Assign resource:");
+		// 	AliasListItem assignResponse = client.getAlias().assign(aliasId, creatorDataItemId);
+		// 	MapsCommon.print(assignResponse);
 
-			System.out.println("Get details:");
-			AliasListItem getDetailsResponse = client.getAlias().getDetails(aliasId);
-			MapsCommon.print(getDetailsResponse);
+		// 	System.out.println("Get details:");
+		// 	AliasListItem getDetailsResponse = client.getAlias().getDetails(aliasId);
+		// 	MapsCommon.print(getDetailsResponse);
 
-			System.out.println("List aliases:");
-			PagedIterable<AliasListItem> list = client.getAlias().list();
-			for (AliasListItem item : list) {
-				MapsCommon.print(item);
-			}
-		} catch (HttpResponseException err) {
-			System.out.println(err);
-		} finally {
-			client.getAlias().delete(aliasId);
-			System.out.println(String.format("Deleted alias with aliasId: %s", aliasId));
-		}
+		// 	System.out.println("List aliases:");
+		// 	PagedIterable<AliasListItem> list = client.getAlias().list();
+		// 	for (AliasListItem item : list) {
+		// 		MapsCommon.print(item);
+		// 	}
+		// } catch (HttpResponseException err) {
+		// 	System.out.println(err);
+		// } finally {
+		// 	client.getAlias().delete(aliasId);
+		// 	System.out.println(String.format("Deleted alias with aliasId: %s", aliasId));
+		// }
 	}
 }
