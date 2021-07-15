@@ -53,7 +53,7 @@ public class AliasSample {
         var defaultCreds = new DefaultAzureCredentialBuilder().build();
         Alias aliasClient = CreatorManager
             .configure()
-            .withPolicy(clientIdPolicy)
+            .withPolicy(subscriptionKeyPolicy)
             .authenticate(defaultCreds, new AzureProfile(new AzureEnvironment(new HashMap<String, String>() {{
                 put("managementEndpointUrl", "https://atlas.microsoft.com");
             }})))

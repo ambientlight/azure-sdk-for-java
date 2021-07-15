@@ -1,15 +1,9 @@
 package com.azure.maps.creatorsamples;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-// import com.azure.maps.creator.models.ErrorDetail;
-// import com.azure.maps.service.models.LongRunningOperationResult;
-// import com.azure.maps.service.models.LroStatus;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,42 +15,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class MapsCommon {
-    // public static class OperationWithHeaders {
-    //     public final LongRunningOperationResult longRunningOperationResult;
-    //     public final String resourceLocation;
-
-    //     public OperationWithHeaders(LongRunningOperationResult longRunningOperationResult, String resourceLocation) {
-    //         this.longRunningOperationResult = longRunningOperationResult;
-    //         this.resourceLocation = resourceLocation;
-    //     }
-    // }
-
-    // public static String getUid(String url) {
-    //     Pattern pattern = Pattern.compile("[0-9A-Fa-f\\-]{36}");
-    //     Matcher matcher = pattern.matcher(url);
-    //     matcher.find();
-    //     return matcher.group();
-    // }
-
-    // public static String waitForStatusComplete(String operationId,
-    //         Function<String, MapsCommon.OperationWithHeaders> getStatus) throws InterruptedException {
-    //     MapsCommon.OperationWithHeaders status = getStatus.apply(operationId);
-    //     while (status.longRunningOperationResult.getStatus() != LroStatus.SUCCEEDED) {
-    //         LongRunningOperationResult lroResult = status.longRunningOperationResult;
-    //         if (status.longRunningOperationResult.getStatus() == LroStatus.FAILED) {
-    //             System.out.println(lroResult.getError().getMessage());
-    //             for (ErrorDetail detail : lroResult.getError().getDetails()) {
-    //                 for (ErrorDetail innerDetail : detail.getDetails()) {
-    //                     System.out.println(innerDetail.getMessage());
-    //                 }
-    //             }
-    //             return null;
-    //         }
-    //         TimeUnit.SECONDS.sleep(15);
-    //         status = getStatus.apply(operationId);
-    //     }
-    //     return getUid(status.resourceLocation);
-    // }
 
     public static void print(Object object) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
@@ -73,6 +31,10 @@ public class MapsCommon {
 
     public static InputStream getResource(String path) {
         return new MapsCommon().getClass().getResourceAsStream(path);
+    }
+
+    public static URL getResourceURL(String path) {
+        return new MapsCommon().getClass().getResource(path);
     }
 
     public static String readContent(InputStream stream) {
