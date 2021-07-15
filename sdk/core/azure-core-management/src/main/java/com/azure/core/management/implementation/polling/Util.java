@@ -75,6 +75,29 @@ class Util {
     }
 
     /**
+     * Gets value of Operation-Location header from the given Http headers.
+     *
+     * @param headers the Http headers
+     * @param logger the logger
+     * @return the Location header value if exists, null otherwise
+     */
+    static URL getOperationLocationUrl(HttpHeaders headers, ClientLogger logger) {
+        return getUrl("Operation-Location", headers, logger, false);
+    }
+
+    /**
+     * Gets value of Operation-Location header from the given Http headers.
+     *
+     * @param headers the Http headers
+     * @param logger the logger
+     * @param ignoreException whether to ignore malformed URL
+     * @return the URL value of the given header, null if header does not exists.
+     */
+    static URL getOperationLocationUrl(HttpHeaders headers, ClientLogger logger, boolean ignoreException) {
+        return getUrl("Operation-Location", headers, logger, ignoreException);
+    }
+
+    /**
      * Get a url from Http headers.
      *
      * @param urlHeaderName the header name

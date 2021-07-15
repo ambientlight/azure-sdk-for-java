@@ -495,6 +495,7 @@ public final class PollingState {
         assertStatusCode(202);
         final URL azAsyncOpUrl = Util.getAzureAsyncOperationUrl(lroResponseHeaders, LOGGER, true);
         final URL locationUrl = Util.getLocationUrl(lroResponseHeaders, LOGGER, true);
+        final URL operationLocationUrl = Util.getOperationLocationUrl(lroResponseHeaders, LOGGER, true);
         if (azAsyncOpUrl != null) {
             return this.setData(new AzureAsyncOperationData(this.lroRequestMethod,
                 this.lroOperationUri,
@@ -504,6 +505,10 @@ public final class PollingState {
         if (locationUrl != null) {
             return this.setData(new LocationData(locationUrl));
         }
+        if (operationLocationUrl != null) {
+            return this.setData(new LocationData(operationLocationUrl));
+        }
+
         return this.setData(new SynchronouslyFailedLroData("Response with status code 202 does not contain "
             + "an Azure-AsyncOperation or Location header", 202, lroResponseHeaders.toMap(), lroResponseBody));
     }
