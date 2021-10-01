@@ -8,23 +8,19 @@ import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpRequest;
 import com.azure.core.http.rest.ResponseBase;
 
-/** Contains all response data for the getMapStaticImage operation. */
-public final class RendersGetMapStaticImageResponse extends ResponseBase<RendersGetMapStaticImageHeaders, Void> {
+/** Contains all response data for the getMapTile operation. */
+public final class GetMapTileResponse extends ResponseBase<GetMapTileHeaders, Void> {
     /**
-     * Creates an instance of RendersGetMapStaticImageResponse.
+     * Creates an instance of GetMapTileResponse.
      *
-     * @param request the request which resulted in this RendersGetMapStaticImageResponse.
+     * @param request the request which resulted in this GetMapTileResponse.
      * @param statusCode the status code of the HTTP response.
      * @param rawHeaders the raw headers of the HTTP response.
      * @param value the deserialized value of the HTTP response.
      * @param headers the deserialized headers of the HTTP response.
      */
-    public RendersGetMapStaticImageResponse(
-        HttpRequest request,
-        int statusCode,
-        HttpHeaders rawHeaders,
-        Void value,
-        RendersGetMapStaticImageHeaders headers) {
+    public GetMapTileResponse(
+            HttpRequest request, int statusCode, HttpHeaders rawHeaders, Void value, GetMapTileHeaders headers) {
         super(request, statusCode, rawHeaders, value, headers);
     }
 }

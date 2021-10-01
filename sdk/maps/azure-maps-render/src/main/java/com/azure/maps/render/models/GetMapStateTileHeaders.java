@@ -5,15 +5,11 @@
 package com.azure.maps.render.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The RendersGetMapStateTilePreviewHeaders model. */
+/** The GetMapStateTileHeaders model. */
 @Fluent
-public final class RendersGetMapStateTilePreviewHeaders {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RendersGetMapStateTilePreviewHeaders.class);
-
+public final class GetMapStateTileHeaders {
     /*
      * The Content-Type property.
      */
@@ -25,7 +21,7 @@ public final class RendersGetMapStateTilePreviewHeaders {
      *
      * @return the contentType value.
      */
-    public String contentType() {
+    public String getContentType() {
         return this.contentType;
     }
 
@@ -33,18 +29,10 @@ public final class RendersGetMapStateTilePreviewHeaders {
      * Set the contentType property: The Content-Type property.
      *
      * @param contentType the contentType value to set.
-     * @return the RendersGetMapStateTilePreviewHeaders object itself.
+     * @return the GetMapStateTileHeaders object itself.
      */
-    public RendersGetMapStateTilePreviewHeaders withContentType(String contentType) {
+    public GetMapStateTileHeaders setContentType(String contentType) {
         this.contentType = contentType;
         return this;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
     }
 }

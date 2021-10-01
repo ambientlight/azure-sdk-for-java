@@ -8,23 +8,19 @@ import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpRequest;
 import com.azure.core.http.rest.ResponseBase;
 
-/** Contains all response data for the getMapTilePreview operation. */
-public final class RenderV2sGetMapTilePreviewResponse extends ResponseBase<RenderV2sGetMapTilePreviewHeaders, Void> {
+/** Contains all response data for the getMapStateTile operation. */
+public final class GetMapStateTileResponse extends ResponseBase<GetMapStateTileHeaders, Void> {
     /**
-     * Creates an instance of RenderV2sGetMapTilePreviewResponse.
+     * Creates an instance of GetMapStateTileResponse.
      *
-     * @param request the request which resulted in this RenderV2sGetMapTilePreviewResponse.
+     * @param request the request which resulted in this GetMapStateTileResponse.
      * @param statusCode the status code of the HTTP response.
      * @param rawHeaders the raw headers of the HTTP response.
      * @param value the deserialized value of the HTTP response.
      * @param headers the deserialized headers of the HTTP response.
      */
-    public RenderV2sGetMapTilePreviewResponse(
-        HttpRequest request,
-        int statusCode,
-        HttpHeaders rawHeaders,
-        Void value,
-        RenderV2sGetMapTilePreviewHeaders headers) {
+    public GetMapStateTileResponse(
+            HttpRequest request, int statusCode, HttpHeaders rawHeaders, Void value, GetMapStateTileHeaders headers) {
         super(request, statusCode, rawHeaders, value, headers);
     }
 }

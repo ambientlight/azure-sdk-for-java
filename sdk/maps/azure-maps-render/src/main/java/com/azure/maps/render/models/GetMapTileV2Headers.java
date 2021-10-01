@@ -5,15 +5,11 @@
 package com.azure.maps.render.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The RendersGetMapStaticImageHeaders model. */
+/** The GetMapTileV2Headers model. */
 @Fluent
-public final class RendersGetMapStaticImageHeaders {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RendersGetMapStaticImageHeaders.class);
-
+public final class GetMapTileV2Headers {
     /*
      * The Content-Type property.
      */
@@ -25,7 +21,7 @@ public final class RendersGetMapStaticImageHeaders {
      *
      * @return the contentType value.
      */
-    public String contentType() {
+    public String getContentType() {
         return this.contentType;
     }
 
@@ -33,18 +29,10 @@ public final class RendersGetMapStaticImageHeaders {
      * Set the contentType property: The Content-Type property.
      *
      * @param contentType the contentType value to set.
-     * @return the RendersGetMapStaticImageHeaders object itself.
+     * @return the GetMapTileV2Headers object itself.
      */
-    public RendersGetMapStaticImageHeaders withContentType(String contentType) {
+    public GetMapTileV2Headers setContentType(String contentType) {
         this.contentType = contentType;
         return this;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
     }
 }
